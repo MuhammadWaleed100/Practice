@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<title>Angular</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+<body>
+	<!--
+	<dir ng-app="myApp" ng-controller="myCtrl">
+	<input type="text" ng-model="firstname">
+	<br>
+	<input type="text" ng-model="lastname">
+	 Full Name : {{firstname + " " + lastname}}
+	</dir>
+
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function($scope){
+			$scope.firstname="Muhammad";
+			$scope.lastname="Waleed";
+		});
+
+	</script>
+-->
+
+<script>
+	var app =  angular.module("myProject" , []);
+	app.controller('myCtrl', function($scope){
+		$scope.names= ["Java","Python"];
+		$scope.myfunction=function(){
+			$scope.errtext="";
+			if(!$scope.name){return 0 ; }
+			if($scope.names.indexOf($scope.name)==-1)
+			{
+			$scope.names.push($scope.name);
+		}
+		else{
+			$scope.errtext="Last time U enter same Number";
+		}
+	}
+		$scope.removefun=function(x){
+			$scope.names.splice(x,1);
+		}
+	});
+</script>
+
+<div ng-app="myProject" ng-controller="myCtrl">
+	<ul>
+		<li ng-repeat="x in names">
+			{{x}}<span ng-click="removefun($index)"> x</span>
+		</li>
+	</ul>
+	<input ng-model="name">
+	<button ng-click="myfunction()">Add</button>
+	<p>{{errtext}}</p>
+</div>
+</body>
+</html>
